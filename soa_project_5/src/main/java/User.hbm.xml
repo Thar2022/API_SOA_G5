@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Mar 24, 2024, 12:07:54 AM by Hibernate Tools 5.4.33.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="soa67_05" name="model.User" optimistic-lock="none" table="user">
+        <id name="idUser" type="java.lang.Integer">
+            <column name="id_user"/>
+            <generator class="identity"/>
+        </id>
+        <property name="name" type="string">
+            <column length="20" name="name" not-null="true"/>
+        </property>
+        <property name="surname" type="string">
+            <column length="20" name="surname" not-null="true"/>
+        </property>
+        <property name="tel" type="string">
+            <column length="10" name="tel" not-null="true"/>
+        </property>
+        <property name="email" type="string">
+            <column length="25" name="email" not-null="true"/>
+        </property>
+        <property name="password" type="string">
+            <column length="15" name="password" not-null="true"/>
+        </property>
+        <property name="role" type="string">
+            <column length="10" name="role" not-null="true"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="reserves" table="reserve">
+            <key>
+                <column name="id_user" not-null="true"/>
+            </key>
+            <one-to-many class="model.Reserve"/>
+        </set>
+        <set fetch="select" inverse="true" lazy="true" name="orderLevels" table="order_level">
+            <key>
+                <column name="id_user" not-null="true"/>
+            </key>
+            <one-to-many class="model.OrderLevel"/>
+        </set>
+    </class>
+</hibernate-mapping>

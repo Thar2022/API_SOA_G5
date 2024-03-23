@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Mar 24, 2024, 12:07:54 AM by Hibernate Tools 5.4.33.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="soa67_05" name="model.ClassTable" optimistic-lock="none" table="class_table">
+        <id name="idClasstable" type="java.lang.Integer">
+            <column name="id_classtable"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="model.ClassExercise" fetch="select" name="classExercise">
+            <column name="id_class" not-null="true"/>
+        </many-to-one>
+        <property name="date" type="date">
+            <column length="10" name="date" not-null="true"/>
+        </property>
+        <property name="timeStart" type="time">
+            <column length="8" name="time_start" not-null="true"/>
+        </property>
+        <property name="timeEnd" type="time">
+            <column length="8" name="time_end" not-null="true"/>
+        </property>
+        
+        <set fetch="select" inverse="true" lazy="true" name="reserves" table="reserve">
+            <key>
+                <column name="id_classtable" not-null="true"/>
+            </key>
+            <one-to-many class="model.Reserve"/>
+        </set>
+    </class>
+</hibernate-mapping>

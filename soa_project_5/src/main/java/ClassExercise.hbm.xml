@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Mar 24, 2024, 12:07:54 AM by Hibernate Tools 5.4.33.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="soa67_05" name="model.ClassExercise" optimistic-lock="none" table="class_exercise">
+        <id name="idClass" type="java.lang.Integer">
+            <column name="id_class"/>
+            <generator class="identity"/>
+        </id>
+        <property name="name" type="string">
+            <column length="30" name="name" not-null="true"/>
+        </property>
+        <property name="detailClass" type="string">
+            <column length="1000" name="detail_class" not-null="true"/>
+        </property>
+        <property name="trainer" type="string">
+            <column length="30" name="trainer" not-null="true"/>
+        </property>
+        <property name="count" type="int">
+            <column name="count" not-null="true"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="classTables" table="class_table">
+            <key>
+                <column name="id_class" not-null="true"/>
+            </key>
+            <one-to-many class="model.ClassTable"/>
+        </set>
+    </class>
+</hibernate-mapping>
