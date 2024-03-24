@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class ClassTable implements java.io.Serializable {
 
 	private Integer idClasstable;
+	@JsonIgnore
 	private ClassExercise classExercise;
 	private Date date;
 	private Date timeStart;
