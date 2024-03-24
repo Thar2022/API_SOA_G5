@@ -18,9 +18,11 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.ResponseBuilder;
 
 import org.glassfish.jersey.media.multipart.FormDataContentDisposition;
 import org.glassfish.jersey.media.multipart.FormDataParam;
+import org.json.JSONArray;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -31,29 +33,94 @@ import model.User;
 
 @Path("/services")
 public class UserService {
-	UserDAO cusDao = new UserDAO();
+	UserDAO userDao = new UserDAO();
 	ReserveDAO reserv = new ReserveDAO();
+	
+	
 	@GET
 	@Path("/users")
 	@Produces(MediaType.APPLICATION_JSON)
 	public ArrayList<User> getUsers() {
-		return cusDao.getAllUsers();
+		return userDao.getAllUsers();
 	}
-
+	
+	
 	@GET
 	@Path("/users/{param}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public ArrayList<User> getUserByName(@PathParam("param") String name) {
 
-		return cusDao.getUserByName(name);
+		return userDao.getUserByName(name);
 
 	}
- 
-	@GET
-	@Path("/reserve")
+	
+	@POST
+	@Path("/users")
 	@Produces(MediaType.APPLICATION_JSON)
-	public  ArrayList<Reserve> getReserve(){
-		return reserv.getAllReserves();
+	public  Response addUsers(User user)  throws IOException {
+		System.out.println(user.getName());
+		boolean checkStatus = userDao.addUser(user);
+		if (checkStatus == true)
+			return Response.status(201).entity(" create successfully").build();
+		else
+			return Response.status(201).entity(" create fail").build();
 	}
+	
+	
+	@DELETE
+	@Path("/users/{id}") 
+	public Response deleteCustomer(@PathParam("id") int userId) throws IOException { 
+		boolean i = userDao.deleteUser(userId);
+		if (i == true)
+			return Response.status(200).entity(" update successfully").build();
+		else
+			return Response.status(404).entity(" update fail because cus_id not found.").build();
+	}
+	
+	
+	
+	@PUT
+	@Path("/users/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response updateCustomer(@PathParam("id") int userId, User user) throws IOException {
+		System.out.println(user.getName());
+		boolean i = userDao.updateUser(userId, user);
+		if (i == true)
+			return Response.status(200).entity(" update successfully").build();
+		else
+			return Response.status(404).entity(" update fail because cus_id not found.").build();
+	}
+		
+	
+
+	
+	@GET
+	@Path("/classTable")
+//	@Produces(MediaType.APPLICATION_JSON)
+	public String getClassTable() {
+		return userDao.getClassTable();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+	
+	
+	
+
+	
+
+	
 
 }

@@ -13,7 +13,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 public class ClassTableDAO {
-	@Transactional 
+//	@Transactional 
     public ArrayList<ClassTable> getAllClassTables() {
         Session session = SessionUtil.getSession();
         Query query = session.createQuery("from ClassTable");
