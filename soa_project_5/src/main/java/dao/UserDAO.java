@@ -98,8 +98,10 @@ public class UserDAO {
 			Session session = SessionUtil.getSession();
 			Transaction tx = session.getTransaction();
 			tx.begin();
-			User cusDelete = session.get(User.class, cus_id);
-			session.delete(cusDelete);
+			Query query =session.createSQLQuery("DELETE FROM user WHERE id_user =" + Integer.toString(cus_id) );
+			query.executeUpdate();
+			//User cusDelete = session.get(User.class, cus_id);
+			//session.delete(cusDelete);
 			tx.commit();
 			session.close();
 		} catch (TransactionException e) {

@@ -14,6 +14,7 @@ public class ClassExercise implements java.io.Serializable {
 	private Integer idClass;
 	private String name;
 	private String detailClass;
+	private String picture;
 	private String trainer;
 	private int count;
 	@JsonIgnore
@@ -22,16 +23,19 @@ public class ClassExercise implements java.io.Serializable {
 	public ClassExercise() {
 	}
 
-	public ClassExercise(String name, String detailClass, String trainer, int count) {
+	public ClassExercise(String name, String detailClass,String picture, String trainer, int count) {
 		this.name = name;
 		this.detailClass = detailClass;
+		this.picture = picture;
 		this.trainer = trainer;
 		this.count = count;
+		
 	}
 
-	public ClassExercise(String name, String detailClass, String trainer, int count, Set classTables) {
+	public ClassExercise(String name, String detailClass,String picture, String trainer, int count, Set classTables) {
 		this.name = name;
 		this.detailClass = detailClass;
+		this.picture = picture;
 		this.trainer = trainer;
 		this.count = count;
 		this.classTables = classTables;
@@ -60,6 +64,14 @@ public class ClassExercise implements java.io.Serializable {
 	public void setDetailClass(String detailClass) {
 		this.detailClass = detailClass;
 	}
+	public String getPicture() {
+		return this.picture;
+	}
+
+	public void setPicture(String picture) {
+		this.picture = picture;
+	}
+	
 
 	public String getTrainer() {
 		return this.trainer;

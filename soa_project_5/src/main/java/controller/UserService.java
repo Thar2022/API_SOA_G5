@@ -70,6 +70,7 @@ public class UserService {
 	@DELETE
 	@Path("/users/{id}") 
 	public Response deleteCustomer(@PathParam("id") int userId) throws IOException { 
+		//System.out.println("asasas");
 		boolean i = userDao.deleteUser(userId);
 		if (i == true)
 			return Response.status(200).entity(" update successfully").build();

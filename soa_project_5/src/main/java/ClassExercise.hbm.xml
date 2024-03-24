@@ -12,6 +12,11 @@
         <property name="detailClass" type="string">
             <column length="1000" name="detail_class" not-null="true"/>
         </property>
+        
+        <property name="picture" type="string">
+            <column length="1000" name="picture" not-null="true"/>
+        </property>
+        
         <property name="trainer" type="string">
             <column length="30" name="trainer" not-null="true"/>
         </property>

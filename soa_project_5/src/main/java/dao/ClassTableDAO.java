@@ -29,7 +29,7 @@ public class ClassTableDAO {
         return classTable;
     }
 
-    public void addClassTable(ClassTable classTable) {
+    public boolean addClassTable(ClassTable classTable) {
         Session session = SessionUtil.getSession();
         Transaction tx = null;
         try {
