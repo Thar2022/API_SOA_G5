@@ -36,7 +36,6 @@ public class UserService {
 	UserDAO userDao = new UserDAO();
 	ReserveDAO reserv = new ReserveDAO();
 	
-	
 	@GET
 	@Path("/users")
 	@Produces(MediaType.APPLICATION_JSON)

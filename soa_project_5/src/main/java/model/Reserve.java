@@ -13,7 +13,7 @@ public class Reserve implements java.io.Serializable {
 	private Integer idReserve;
 	@JsonIgnore
 	private ClassTable classTable;
-	@JsonIgnore
+	//@JsonIgnore
 	private User user;
 	private Date date;
 	private Date time;

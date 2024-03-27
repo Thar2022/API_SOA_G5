@@ -44,6 +44,7 @@ public class ClassTableDAO {
         } finally {
             session.close();
         }
+		return false;
     }
 
     public void updateClassTable(ClassTable classTable) {
