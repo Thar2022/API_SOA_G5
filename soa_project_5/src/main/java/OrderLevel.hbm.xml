@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Mar 24, 2024, 12:07:54 AM by Hibernate Tools 5.4.33.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="soa67_05" name="model.OrderLevel" optimistic-lock="none" table="order_level">
+        <id name="idOrderMemberLevel" type="java.lang.Integer">
+            <column name="id_order_member_level"/>
+            <generator class="identity"/>
+        </id>
+        <many-to-one class="model.MemberLevel" fetch="select" name="memberLevel">
+            <column name="id_member_level" not-null="true"/>
+        </many-to-one>
+        <many-to-one class="model.User" fetch="select" name="user">
+            <column name="id_user" not-null="true"/>
+        </many-to-one>
+        <property name="dateOrder" type="date">
+            <column length="10" name="date_order" not-null="true"/>
+        </property>
+        <property name="timeOrder" type="time">
+            <column length="8" name="time_order" not-null="true"/>
+        </property>
+        <property name="dateExp" type="date">
+            <column length="10" name="date_exp" not-null="true"/>
+        </property>
+        <property name="timeExp" type="time">
+            <column length="8" name="time_exp" not-null="true"/>
+        </property>
+        <property name="status" type="string">
+            <column length="250" name="status" not-null="true"/>
+        </property>
+        <property name="pictureName" type="string">
+            <column length="250" name="picture_name" not-null="true"/>
+        </property>
+        <property name="note" type="string">
+            <column length="250" name="note" not-null="true"/>
+        </property>
+    </class>
+</hibernate-mapping>

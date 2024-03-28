@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Generated Mar 24, 2024, 12:07:54 AM by Hibernate Tools 5.4.33.Final --><!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class catalog="soa67_05" name="model.MemberLevel" optimistic-lock="none" table="member_level">
+        <id name="idMemberLevel" type="java.lang.Integer">
+            <column name="id_member_level"/>
+            <generator class="identity"/>
+        </id>
+        <property name="leveltype" type="string">
+            <column length="99" name="leveltype" not-null="true"/>
+        </property>
+        <property name="price" type="double">
+            <column name="price" not-null="true" precision="22" scale="0"/>
+        </property>
+        <property name="numUse" type="int">
+            <column name="numUse" not-null="true"/>
+        </property>
+        <property name="detail" type="string">
+            <column length="65535" name="Detail" not-null="true"/>
+        </property>
+        <set fetch="select" inverse="true" lazy="true" name="orderLevels" table="order_level">
+            <key>
+                <column name="id_member_level" not-null="true"/>
+            </key>
+            <one-to-many class="model.OrderLevel"/>
+        </set>
+    </class>
+</hibernate-mapping>
