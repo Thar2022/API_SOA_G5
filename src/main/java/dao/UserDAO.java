@@ -98,8 +98,10 @@ public class UserDAO {
 			Session session = SessionUtil.getSession();
 			Transaction tx = session.getTransaction();
 			tx.begin();
-			User cusDelete = session.get(User.class, cus_id);
-			session.delete(cusDelete);
+			Query query =session.createSQLQuery("DELETE FROM user WHERE id_user =" + Integer.toString(cus_id) );
+			query.executeUpdate();
+			//User cusDelete = session.get(User.class, cus_id);
+			//session.delete(cusDelete);
 			tx.commit();
 			session.close();
 		} catch (TransactionException e) {
@@ -128,30 +130,4 @@ public class UserDAO {
 		session.close();
 		return jsonArray.toString(); 
 	}
-	public String getClassProfile() {
-		Session session = SessionUtil.getSession();
-//		 Query query = session.createQuery("SELECT ct.date, ce.name FROM ClassTable as ct INNER JOIN ct.classExercise ce"); 
-		 Query query = session.createSQLQuery("SELECT user.name,user.surname,user.tel,user.email,member_level.leveltype,order_level.date_order,order_level.date_exp,order_level.note FROM `user` INNER JOIN order_level ON order_level.id_user = user.id_user INNER JOIN member_level ON member_level.id_member_level = order_level.id_member_level"); 
-			
-		ArrayList<Object[]> table = (ArrayList<Object[]>) query.list();
-		JSONArray jsonArray = new JSONArray();
-		for(Object[] result: table) {
-			JSONObject jsonObject = new JSONObject();
-			jsonObject.put("name",result[0]);
-			jsonObject.put("surname",result[1]);
-			jsonObject.put("tel",result[2]);
-			jsonObject.put("email",result[3]);
-			jsonObject.put("leveltype",result[4]);
-			jsonObject.put("dateOrder",result[5]);
-			jsonObject.put("dateExp",result[6]);
-			jsonObject.put("note",result[7]);
-			
-			jsonArray.put(jsonObject);
-			System.out.println(result);
-		}
-		session.close();
-		return jsonArray.toString(); 
-	}
-	
-	
 }
